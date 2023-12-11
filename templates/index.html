@@ -1,0 +1,50 @@
+<!doctype html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<p>RSS feed viewer</p>
+<form name="url">
+	<input type="text" name="url" id="url" value={{default}} placeholder="feed url">
+</form>
+
+{% if request %}
+<p>
+</p>
+<p>
+</p>
+<p class="status_code">
+<!--{{request.args.get('url')}}-->
+</p>
+<p class="status_code">
+{{code}}
+</p>
+{% endif %}
+{% if err %}
+<p class="err">
+{{err}}
+{% endif %}
+{% if header %}
+<p class="data">
+data: {{header}}
+</p>
+{% endif %}
+{% if data %}
+<p class="title">
+species: {{data[0].title}}
+</p>
+<p class="title">
+genus: {{data[0].description}}
+</p>
+{% for i in data[1:] %}
+<div class="post">
+	<h2>
+	{{i.title}}
+	</h2>
+	<small>
+	{{i.published}}
+	</small>
+	<p>
+	{{i.description|safe}}
+	</p>
+</div>
+{% endfor %}
+
+{% endif %}
