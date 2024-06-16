@@ -30,7 +30,8 @@ def index():
             default = url
         except Exception as e:
             err = "That host... is a ghost"
-        if contentType in ["text/xml", "application/xml"]:
+        print(contentType)
+        if contentType in ["text/xml", "application/xml", "application/rss+xml; charset=UTF-8"]:
             feed = feedparser.parse(url)
             data = [{"title":feed.feed.title, "description":feed.feed.description}]
             title = feed.feed.title
